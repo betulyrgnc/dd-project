@@ -1,0 +1,556 @@
+@import url(https://fonts.googleapis.com/css?family=Six+Caps);
+
+// Colors
+$text-color: #000;
+$link-color: #761a18;
+$bg-color: #fff;
+$container-bg: #f4f4f4;
+
+//Fonts
+$df: 'Roboto', sans-serif;
+$df-size: 16px;
+
+//Borders
+$border-width: 1px;
+$border-style: solid;
+
+body {
+  background-color: $bg-color;
+  margin: auto;
+}
+
+.front {
+  font-size: 16px;
+  padding: 10px;
+  background: #333333;
+  color: #ffffff;
+  text-align: center;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
+.border-animation {
+  --border-width: 0.1em;
+  --animation-speed: 0.5s;
+  --color: #ffffff;
+  color: var(--color);
+  position: relative;
+  display: inline-block;
+  font-size: 4em;
+  line-height: 1em;
+  transform: scale(1, 0.8);
+  border: var(--border-width) solid transparent;
+
+  .border-animation__inner {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    font-family: 'Six Caps', sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    padding: 0.2em;
+    // background: rgba(50, 50, 50, 0.5);
+    background: #333;
+    z-index: 1;
+    border: solid var(--border-width) transparent;
+  }
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    background: var(--color);
+  }
+
+  &:focus:before,
+  &:hover:before {
+    animation: beforeBorders var(--animation-speed) forwards ease-in-out;
+  }
+
+  &:focus:after,
+  &:hover:after {
+    animation: afterBorders var(--animation-speed) forwards ease-in-out;
+  }
+
+  &:focus,
+  &:hover {
+    animation: borderColors var(--animation-speed) steps(1) forwards;
+    outline: none;
+
+    .border-animation__inner {
+      animation: background calc(var(--animation-speed) / 5 * 3) forwards ease-in-out;
+      animation-delay: calc(var(--animation-speed) / 5 * 2);
+    }
+  }
+}
+
+@keyframes beforeBorders {
+  0% {
+    top: calc(var(--border-width) * -1);
+    left: 50%;
+    bottom: auto;
+    right: auto;
+    width: 0;
+    height: var(--border-width);
+  }
+  33% {
+    top: calc(var(--border-width) * -1);
+    left: calc(var(--border-width) * -1);
+    bottom: auto;
+    right: auto;
+    width: calc(var(--border-width) + 50%);
+    height: var(--border-width);
+  }
+  66% {
+    top: calc(var(--border-width) * -1);
+    left: calc(var(--border-width) * -1);
+    bottom: auto;
+    right: auto;
+    width: var(--border-width);
+    height: calc((var(--border-width) * 2) + 100%);
+  }
+  100% {
+    top: auto;
+    left: calc(var(--border-width) * -1);
+    bottom: calc(var(--border-width) * -1);
+    right: auto;
+    width: calc(var(--border-width) + 50%);
+    height: calc((var(--border-width) * 2) + 100%);
+  }
+}
+
+@keyframes afterBorders {
+  0% {
+    top: calc(var(--border-width) * -1);
+    left: auto;
+    bottom: auto;
+    right: 50%;
+    width: 0;
+    height: var(--border-width);
+  }
+  33% {
+    top: calc(var(--border-width) * -1);
+    left: auto;
+    bottom: auto;
+    right: calc(var(--border-width) * -1);
+    width: calc(var(--border-width) + 50%);
+    height: var(--border-width);
+  }
+  66% {
+    top: calc(var(--border-width) * -1);
+    left: auto;
+    bottom: auto;
+    right: calc(var(--border-width) * -1);
+    width: var(--border-width);
+    height: calc((var(--border-width) * 2) + 100%);
+  }
+  100% {
+    top: auto;
+    left: auto;
+    bottom: calc(var(--border-width) * -1);
+    right: calc(var(--border-width) * -1);
+    width: calc(var(--border-width) + 50%);
+    height: calc((var(--border-width) * 2) + 100%);
+  }
+}
+
+@keyframes borderColors {
+  0% {
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+  33% {
+    border-top-color: var(--color);
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+
+  }
+  66% {
+    border-top-color: var(--color);
+    border-right-color: var(--color);
+    border-bottom-color: transparent;
+    border-left-color: var(--color);
+  }
+  100% {
+    border-top-color: var(--color);
+    border-right-color: var(--color);
+    border-bottom-color: var(--color);
+    border-left-color: var(--color);
+  }
+}
+
+@keyframes background {
+  to {
+    background: #555;
+    text-shadow: 0 0.1em 0.1em #111;
+  }
+}
+
+@media (min-width: 850px) {
+  body {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1200px) {
+  .border-animation {
+    font-size: 6em;
+    line-height: 1em;
+  }
+}
+
+
+
+
+
+h1, .name {
+  color: $link-color;
+  margin-left: 40%;
+}
+
+.line {
+  hr {
+    color: $link-color;
+  }
+}
+.info-text {
+  width: 200px;
+  background-color: $bg-color;
+  position: absolute;
+  left: 45%;
+  transform: translateY(-80%);
+
+  pre {
+    color: $link-color;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+.header-menu {
+  float: left;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  box-shadow: 0 3px 3px 0 #eeeeee;
+  ul {
+    float: left;
+    display: inline-block;
+    list-style-type: none;
+    width: 100%;
+    margin-left: 10%;
+    margin-right: 10%;
+
+    li {
+      float: left;
+      margin-right: 20%;
+    }
+    a {
+      text-decoration: none;
+      color: $link-color;
+      font-size: $df-size;
+      font-weight: bold;
+    }
+  }
+}
+
+
+/*===================================
+=            ABOUT                  =
+===================================*/
+
+.about-img {
+  width: 50%;
+  height: 450px;
+  display: table;
+  position: relative;
+  overflow: hidden;
+  text-align:center;
+  margin:0 auto;
+}
+
+.about-text{
+  color: $text-color;
+  font-size: 14px;
+  text-indent: inherit;
+  text-align: center;
+  line-height: 25px;
+  margin-bottom: 10%;
+}
+
+
+/*===================================
+=            PARTNERS               =
+===================================*/
+
+.partners-img {
+  width:90% !important;
+  height: 250px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.head-text {
+  color: $link-color;
+  margin-left: 10%;
+  font-size: 22px;
+  font-weight: bold;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: $link-color;
+  width: 200px;
+  padding-top: 10px;
+}
+.partners-text{
+  color: $text-color;
+  font-size: 14px;
+  line-height: 25px;
+  margin-bottom: 5%;
+  margin-left: 10%;
+}
+
+
+/*===================================
+=            PRACTİCEAREAS          =
+===================================*/
+
+.content-list-top {
+    margin-top: 10%;
+    list-style-type: none;
+    text-align: center;
+    li {
+      a {
+        text-decoration: none;
+        color: $link-color;
+        font-size: $df-size;
+        font-weight: 400;
+        line-height: 45px;
+      }
+    }
+}
+
+.content-list-bottom {
+    list-style-type: none;
+    text-align: center;
+    li {
+      a {
+        text-decoration: none;
+        color: $link-color;
+        font-size: $df-size;
+        font-weight: 400;
+        line-height: 45px;
+      }
+    }
+}
+
+
+/*===================================
+=            PRACTİCEAREASDETAIL    =
+===================================*/
+
+.detail-head {
+  margin-left: 5%;
+  color: $link-color;
+  font-size: 22px;
+  font-weight: bold;
+  width: 310px;
+  margin-top: 8%;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: $link-color;
+
+}
+
+.detail-text-top {
+  margin-left: 5%;
+}
+
+.detail-text-bottom {
+  margin-left: 5%;
+}
+
+.detail-list-head {
+  margin-left: 5%;
+  margin-top: 5%;
+  color: $text-color;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.detail-list {
+  margin-left: 4%;
+  li {
+    line-height: 20px;
+  }
+}
+
+
+/*===================================
+=             CONTACT               =
+===================================*/
+
+iframe {
+  width: 50%;
+  height: 450px;
+  display: table;
+  position: relative;
+  overflow: hidden;
+  text-align:center;
+  margin:0 auto;
+}
+
+
+.contact-box {
+  position: relative;
+  width: 50%;
+  display: table;
+  position: relative;
+  overflow: hidden;
+  text-align:center;
+  margin:0 auto;
+
+  .contact-box-left {
+    float: left;
+    width: 50%;
+
+    .contact-text-head {
+      width: 150px;
+      color: $link-color;
+      font-size: 20px;
+      text-align: left;
+      margin-left: 5%;
+      border-top-style: solid;
+      border-top-width: 1px;
+      border-top-color: $link-color;
+    }
+    .contact-text {
+      color: $text-color;
+      font-size: $df-size;
+      text-align: left;
+      margin-left: 5%;
+    }
+  }
+
+  .contact-box-right {
+    float: right;
+    width: 50%;
+
+    .contact-text-head-bottom {
+      color: $link-color;
+      font-size: 20px;
+      text-align: left;
+      margin-left: 20%;
+      border-top-style: solid;
+      border-top-width: 1px;
+      border-top-color: $link-color;
+    }
+  }
+}
+
+/*===================================
+=            HOMEPAGE              =
+===================================*/
+
+.bg-img {
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  position: absolute;
+  left: 0px;
+  top: 23%;
+  z-index: -1;
+}
+.homepage-top-box {
+  width: 550px;
+  height: 150px;
+  background-color: $bg-color;
+  box-shadow: 2px 2px 2px 2px #eeeeee;
+  position: absolute;
+  left: 30%;
+  top: 35%;
+
+  .top-text {
+    text-align: center;
+    padding-top: 20px;
+  }
+  .top-text {
+    margin: 0px;
+    span {
+      font-style: italic;
+      color: $link-color;
+    }
+  }
+  .view-box {
+    width: 100px;
+    text-align: center;
+    margin-top: 25px;
+    margin-left: 40%;
+    text-align: center;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: $link-color;
+    .view {
+      color: $link-color;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+}
+
+.homepage-bottom-box {
+  position: absolute;
+  left: 20%;
+  top: 75%;
+  .box-left {
+    position: relative;
+    float: left;
+    width: 250px;
+    height: 270px;
+    background-color: $bg-color;
+    margin-right: 20px;
+  }
+  .box-center {
+    position: relative;
+    float: left;
+    width: 250px;
+    height: 270px;
+    background-color: $bg-color;
+    margin-right: 20px;
+  }
+  .box-right {
+    position: relative;
+    float: left;
+    width: 250px;
+    height: 270px;
+    background-color: $bg-color;
+  }
+  p {
+    text-align: center;
+  }
+  img {
+    width: 100%;
+    height: 200px;
+  }
+  .view-box {
+    width: 100px;
+    text-align: center;
+    margin-top: 8px;
+    margin-left: 30%;
+    text-align: center;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: $link-color;
+    .view {
+      color: $link-color;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+}
